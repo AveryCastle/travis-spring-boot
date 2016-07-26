@@ -10,11 +10,9 @@ install: false
 env:
   global:
     - TERM=dumb
-  matrix:
-    PROFILE=development
 
 script:
-  - ./gradlew clean build -Dspring.profiles.active=${PROFILE}
+  - SPRING_PROFILES_ACTIVE=${PROFILE} ./gradlew clean check
 
 notifications:
   email: false
