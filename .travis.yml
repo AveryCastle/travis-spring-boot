@@ -8,8 +8,13 @@ jdk:
 install: false
 
 env:
+  matrix:
+    - PROFILE=development
+    - PROFILE=staging
+    - PROFILE=production
   global:
   - TERM=dumb
+
 
 script:
 - SPRING_PROFILES_ACTIVE=${PROFILE} ./gradlew clean build check
@@ -27,3 +32,4 @@ deploy:
   acl: public_read
   on:
     repo: JuHyun/travis-spring-boot
+  region: ap-northeast-2
