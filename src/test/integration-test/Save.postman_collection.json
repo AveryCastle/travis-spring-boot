@@ -1,0 +1,40 @@
+{
+	"variables": [],
+	"info": {
+		"name": "User Save",
+		"_postman_id": "dbad403c-605d-b43e-6477-7d940f35102b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "var expected = `{\n  \"id\": \"9\",\n  \"name\": \"Marat Safin\",\n  \"nickname\": \"\",\n  \"birthday\": \"800102\"\n}\n`\n\ntests[\"Body is correct\"] = responseBody === JSON.stringify(JSON.parse(expected));"
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Marat Safin\",\n  \"nickname\": \"\",\n  \"birthday\": \"800102\"\n}"
+				},
+				"description": "User Save"
+			},
+			"response": []
+		}
+	]
+}
