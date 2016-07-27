@@ -3,16 +3,27 @@ language: java
 sudo: false
 
 jdk:
-  - oraclejdk8
+- oraclejdk8
 
 install: false
 
 env:
   global:
-    - TERM=dumb
+  - TERM=dumb
 
 script:
-  - SPRING_PROFILES_ACTIVE=${PROFILE} ./gradlew clean check
+- SPRING_PROFILES_ACTIVE=${PROFILE} ./gradlew clean build check
 
 notifications:
   email: false
+
+deploy:
+  provider: s3
+  access_key_id: AKIAJB7HXD54JKUR26HA
+  secret_access_key:
+    secure: YiuLpXjpJMoxVZ2BV2CQ7LuyObdrls95GK4sxe1x4MsQMgP1hkw7/MEQ9m9ckIpd4Wgtc8iCXICeskiu0X0lbxZ97GExa9p1+vZ4vl3e5o+MoWROhe+IuLwW9cNeah/fw0jVrAOUhW+HcyHsx4iIwDSAxfC6KuiO/HcY6TfyPsxHrfZiOhm+Zz9tn1OJBBi6qdCyZ8JrqwsGkTqHYXaD+AMUbMEjP29XS2IGP0v2gj/DYUVI0nFEWmG7j8GrRggX3RwH1oCkoo8EsqBYfZJADHGPhzfgpJ3jY9BrgoyRgjV25joMtD/yXby2LZtoeZrkqF1VbScS16AUz8cSqAcQy4D1i2oWXq04sMm2Z8c+t9wSZAm5IgfKU17C+3OWtTC52brY8dtJF9PXwa8GbNCv13XOePUfgDjJwphZQRADyKWM4KpDylSx23h19P+BZAhDAje/GxqpHVdx2LdiKnODdDPiZWWDGcrI+MexKoKH0cevCoibY0eSR+QLjClNh8HTSB5YjXK/wBHTXH7+dCYU2DZRGbb+kvCfaTeC1M7YssOvOk126YBUb8H8N2rGoMiOioUJpi56bekoYGg0dARhDBgIvL9NAzRnMZAc/Htt5Z7V6bLrZ2ojXg/mVQsaSsmBf0/jagtlxjxpcsmHksKbysQHWgUhArb8n4ddd5PuBTA=
+  bucket: travis-war
+  upload-dir: build/libs
+  acl: public_read
+  on:
+    repo: JuHyun/travis-spring-boot
