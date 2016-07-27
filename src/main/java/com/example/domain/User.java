@@ -14,6 +14,7 @@ import javax.persistence.Id;
  * User Entity.
  */
 @Entity
+@Setter
 @Getter
 @Builder
 public class User {
@@ -23,14 +24,11 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    @Setter
     private String name;
 
-    @Setter
     private String nickname;
 
     @Column(nullable = false)
-    @Setter
     private String birthday;
 
     @Tolerate
@@ -39,6 +37,15 @@ public class User {
 
     public static User create(String name, String nickname, String birthday) {
         return builder()
+                .name(name)
+                .nickname(nickname)
+                .birthday(birthday)
+                .build();
+    }
+
+    public static User create(Long id, String name, String nickname, String birthday) {
+        return builder()
+                .id(id)
                 .name(name)
                 .nickname(nickname)
                 .birthday(birthday)
